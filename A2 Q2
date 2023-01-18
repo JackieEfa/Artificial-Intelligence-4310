@@ -1,0 +1,7 @@
+;; Title: Assignment #1 Questions #4
+;; By Jacqueline Eshriew
+;; Athabasca University Summmer 2021
+;; Completed using LispWorks
+;; Date 2021-05-28
+
+(defun Finder G(A, Z) P)

@@ -1,0 +1,81 @@
+;; Title: Assignment #2 Questions #2
+;; By Jacqueline Eshriew
+;; Athabasca University Summmer 2021
+;; Completed using LispWorks
+;; Date 2021-05-29
+
+(defvar *map-data* nil)
+
+(defun add-road (from to time)
+  (push (list from to time) *map-data*)
+  (push (list to from time) *map-data*))
+
+; Add item to correct position in queue
+
+(defun add-item (item queue)
+  (if (null queue) 
+      (cons item queue)
+    (if (< (first item) (first (first queue)))
+        (cons item queue)
+      (cons (first queue) (add-item item (rest queue))))))
+
+; Add to queue
+
+(defun add-to-queue (time location via queue)
+  (setq queue (add-item (list time location via) queue))
+  queue)
+
+;
+; For all the roads from a place, add to queue
+;
+
+(defun add-roads (location start queue)
+  (dolist (item *map-data* queue)
+    (let* ((from (first item))
+           (to (second item))
+           (time (third item)))
+      (when (eq from location)
+          (setq queue (add-to-queue (+ start time) to location queue))))))
+
+; Grow search
+
+(defun grow (from to)
+  (let* ((visited (list (cons from nil)))
+         (queue (add-roads from 0 nil))
+         w)
+    (loop
+     (when (eq from to) (return (reverse visited)))
+     (unless queue (return))
+     (setq w (first queue))
+     (setq from (second w))
+     (setq queue (cdr queue))
+     (unless (assoc from visited)
+       (setq visited (cons (cons from (third w)) visited))
+       (setq queue (add-roads from (car w) queue))))))
+
+; List the route
+
+(defun list-route (from to)
+  (let* ((visited (grow from to))
+        route)
+    (when visited
+      (loop
+        (push to route)
+        (when (eq from to) (return route))
+        (setq to (cdr (assoc to visited)))))))
+
+; Define the map
+
+(defun make-map ()
+  (add-road 'a 'b 2)
+  (add-road 'b 'c 3)
+  (add-road 'a 'd 9)
+  (add-road 'b 'e 3)
+  (add-road 'c 'f 7)
+  (add-road 'd 'e 3)
+  (add-road 'e 'f 6)
+  (add-road 'd 'g 2)
+  (add-road 'e 'h 8)
+  (add-road 'f 'z 6)
+  (add-road 'g 'h 2)
+  (add-road 'h 'z 4))

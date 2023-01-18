@@ -1,0 +1,21 @@
+;; Title: Assignment #1 Questions #4
+;; By Jacqueline Eshriew
+;; Athabasca University Summmer 2021
+;; Completed using LispWorks
+;; Date 2021-05-28
+
+(defun factorial (x)
+  (cond ;; cond is equal to if else statements just diffrent formatting than c++
+   ;; need to write equations with expression first
+   ;; ie 1 + 2 is + 1 2
+    ((= x 1) 1) ;; 1 is equal to if true 
+    ((= x 0) 1)
+    ;; t stands for the truth condition 
+    ;; when x meets the requirments then the truthstatement will work
+    ;; however for this program if x is a negative number then the program will abort.
+    (t (* x (factorial (- x 1)))))
+)
+
+(print  "The Facotrial is:") ;; simple print statement
+(print (fatorial 7))
+;; prints function

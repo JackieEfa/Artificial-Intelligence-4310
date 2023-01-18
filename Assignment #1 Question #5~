@@ -1,0 +1,15 @@
+(defun getpositions(element ls) ;; define function with elements in a list
+ (let ((final nil))
+;;evalates each element that is not empty kinda a like a while loop
+ (dotimes (i (length ls))
+;;like a do loop with element{i} in list until there are no more elements left to evaluate.
+   (if (equal(nth i ls) element)
+;;nth locates the element within a list, car will find the first elemnt in the list that matches
+       (push (+ i 1) final)))
+;;like the pushback and add the element to the diisplay output and will display all the elements that pass the condition, or nil.
+(reverse final)))
+;;the original wirte sequence would be 7 5 2 because the push just make room for a element by pushing back the previous one. 
+  
+;; writing out the function output, number to look for and the list of numbers in the list.
+(print " The positions of n are: ")
+(write (getpositions '2 '(1 2 3 4 2 5 2 6)))

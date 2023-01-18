@@ -1,0 +1,23 @@
+;; Title: Assignment #1 Questions #5
+;; By Jacqueline Eshriew
+;; Athabasca University Summmer 2021
+;; Completed using LispWorks
+;; Date 2021-05-29
+
+; car, crd, null, not
+(defun plist (a)
+  (if (not (null a)) (plist (cdr a)))
+  (if (not (null a)) (print (car a)))
+
+)
+
+(plist '(1 2 3 4 2 5 2 6)) ;; you need ' before the list to call it
+
+(defun num-in-list-p (n l)
+  ;; is N in L: N is assumed to be a number, L a list of numbers
+  (cond ((null l)
+         nil)
+        ((= n (first l))
+         t)
+        (t
+         (num-in-list-p n (rest l)))))

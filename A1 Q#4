@@ -1,0 +1,22 @@
+;; Title: Assignment #1 Questions #4
+;; By Jacqueline Eshriew
+;; Athabasca University Summmer 2021
+;; Completed using LispWorks
+;; Date 2021-05-28
+
+(defun factorial (n);; defines function with one variable in it. 
+  (cond 
+   ;; cond is equal to if else statements just diffrent formatting than c++
+   ;; need to write equations with expression first
+   ;; ie 1 + 2 is + 1 2
+    ((= n 1) 1) ;; 1 is equal to if true 
+    ((= n 0) 1)
+    (t ;; t stands for the truth condition 
+	(* n (factorial (- n 1)))))
+	 ;; when n meets the requirments then the truth statement will work
+   	 ;; however for this program if n is a negative number then the program will abort.
+)
+
+(print  "The Facotrial is:") ;; simple print statement
+(print (factorial 7))
+;; prints function with the n variable ite evaluating

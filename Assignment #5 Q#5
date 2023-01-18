@@ -1,0 +1,10 @@
+(defun getPos(elem ls &optional(n 1))
+  (cond 
+   ((null ls)ls)
+   ((equal (car ls) elem) n)
+   (t (getPos elem (cdr ls) (+ n 1)))
+)
+)
+
+(getPos 1'(2 3 4 1))
+
